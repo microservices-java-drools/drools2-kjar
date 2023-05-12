@@ -1,0 +1,29 @@
+package rules
+import pe.gob.contraloria.sisco.models.Order;
+import pe.gob.contraloria.sisco.models.UserRepository;
+
+dialect "mvel"
+
+rule "HDFC"
+
+when
+    order: Order(cardType=="HDFC" && price>10000)
+then
+    order.setDiscount(200);
+end
+
+rule "ICICI"
+
+when
+    order: Order(cardType=="ICICI" && price>15000)
+then
+    order.setDiscount(8);
+end
+
+rule "DBS"
+
+when
+    order: Order(cardType=="DBS" && price>15000)
+then
+    order.setDiscount(15);
+end
